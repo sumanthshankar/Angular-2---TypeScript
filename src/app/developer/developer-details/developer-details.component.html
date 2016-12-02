@@ -1,0 +1,31 @@
+<table class="table">
+  <thead class="thead-default">
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>GitHub Account</th>
+      <th>Popular</th>
+      <th>Programming Languages</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{selectedDeveloper?.firstName}}</td>
+      <td>{{selectedDeveloper?.lastName}}</td>
+      <td>{{selectedDeveloper?.email}}</td>
+      <td>{{selectedDeveloper?.githubAccount}}</td>
+      <td>{{selectedDeveloper?.popularity}}</td>
+      <td>{{selectedDeveloper?.languages}}</td>
+    </tr>
+  </tbody>
+</table>
+<div class="row">
+  <div class="col-xs-12">
+    <p>Test 1</p>
+    <ul class="list-group" *ngFor="let o of selectedDeveloper?.languages">
+      <li class="list-group-item">{{o.language}}</li>
+      <p>Test</p>
+    </ul>
+  </div>
+</div>

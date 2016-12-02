@@ -1,0 +1,32 @@
+<div class="list-group" *ngFor="let developer of developers; let developerId = index">
+  <a [routerLink]="['/developer-details', developerId]" class="list-group-item">
+    <h4 class="list-group-item-heading">{{developer.firstName}} {{developer.lastName}}'s Profile</h4>
+  </a>
+</div>
+
+<!--
+<table class="table">
+  <thead class="thead-default">
+    <tr>
+      <th>Developers</th>
+      <th>Name</th>
+      <th>Full Profile</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let developer of developers; let i = index">
+      <td>{{i+1}}</td>
+      <td>{{developer.firstName}} {{developer.lastName}}</td>
+      <td><a [routerLink]="['/developer-details', i]">{{developer.firstName}} 
+      {{developer.lastName}}'s Profile</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<ul class="nav nav nav-tabs" *ngFor="let developer of developers">
+  <li role="presentation"><a href="#">{{developer.firstName}}</a></li>
+  <li role="presentation"><a href="#">{{developer.email}}</a></li>
+  <li role="presentation"><a href="#">Email</a></li>
+  <li role="presentation"><a href="#">Popular</a></li>
+</ul>
+-->

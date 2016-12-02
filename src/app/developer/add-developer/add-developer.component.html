@@ -1,0 +1,181 @@
+<form class="form-horizontal" [formGroup]="newDeveloperForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="firstName" class="col-sm-2 control-label">First Name</label>
+    <div class="col-sm-6">
+      <input type="text" 
+             class="form-control" 
+             id="firstName" 
+             placeholder="Your First Name"
+             formControlName="firstName"
+             >
+    <div *ngIf="!newDeveloperForm.find('firstName').valid">Your First Name is required!</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="lastName" class="col-sm-2 control-label">Last Name</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" 
+                         id="lastName" 
+                         placeholder="Your Last Name"
+                         formControlName="lastName"
+                         >
+    <div *ngIf="!newDeveloperForm.find('lastName').valid">Your Last Name is required!</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="email" class="col-sm-2 control-label">E-Mail ID</label>
+    <div class="col-sm-6">
+      <input type="email" class="form-control" 
+                          id="email" 
+                          placeholder="Your E-Mail"
+                          formControlName="email"
+                          >
+    <div *ngIf="!newDeveloperForm.find('email').valid">Valid E-Mail ID is required</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="githubAccount" class="col-sm-2 control-label">Github Account</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" 
+                         id="githubAccount" 
+                         placeholder="Your Github Account"
+                         formControlName="githubAccount"
+                         >
+    <div *ngIf="!newDeveloperForm.find('githubAccount').valid">Your Github account name is required!</div>
+    </div>
+  </div>
+  <div class="form-group">
+      <label class="col-sm-2 control-label">Are you Popular?</label>
+      <div class="col-sm-6">
+      <label class="form-check-inline" *ngFor="let p of popular">
+        <input class="form-check-input" 
+               type="radio" 
+               name="popularity" 
+               id="popularity" 
+               formControlName="popularity"
+               [value]="p"
+               >
+               {{ p }}
+      </label>
+      <div *ngIf="!newDeveloperForm.find('popularity').valid">Your must select an option!</div>
+      </div>
+  </div>
+  <div class="form-group" formArrayName="programmingLanguages">
+    <label class="col-sm-2 control-label">Programming Languages you know</label>
+    <div class="col-sm-6" *ngFor="let l of newDeveloperForm.find('programmingLanguages').controls; let i = index">
+    <input class="form-control"
+           type="text"
+           formControlName="{{i}}">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-primary" (click)="onAddNewDeveloper()">Add Language</button>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-success" [disabled]="!newDeveloperForm.valid">Add New Developer</button>
+    </div>
+  </div>
+</form>
+
+
+<!--
+<form>
+<TABLE>
+  <TR>
+    <TD>Your name</TD>
+    <TD>
+      <INPUT TYPE="TEXT" NAME="name" placeholder="Last Name">
+    </TD>
+  </TR>
+  <TR>
+    <TD>Your E-mail address</TD>
+    <TD><INPUT TYPE="TEXT" NAME="email" SIZE="25"></TD>
+  </TR>
+</TABLE>
+<P><INPUT TYPE="SUBMIT" VALUE="Submit" NAME="B1"></P>
+</form>
+
+<form class="form-group">
+  <table class="table">
+    <tr>
+      <td>Your First Name</td>
+      <td>
+        <input type="text" 
+          id="firstName" 
+          placeholder="First Name">
+      </td>
+    </tr>
+    <tr>
+      <td>Your Last Name</td>
+      <td>
+        <input type="text" 
+          id="lastName" 
+          placeholder="Last Name">
+      </td>
+    </tr>
+    <tr>
+      <td>Your E-Mail ID</td>
+      <td>
+        <input type="text" 
+          id="email" 
+          placeholder="E-Mail">
+      </td>
+    </tr>
+    <tr>
+      <td>Your Github Account</td>
+      <td>
+        <input type="text" 
+          id="githubAccount" 
+          placeholder="Github Account">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Are you Popular?
+      </td>
+      <td>
+        <input type="radio" name="popularity" value="Yes"> Yes
+      </td>
+      <td>
+        <input type="radio" name="popularity" value="No"> No
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Check all the Programming Languages that you know
+      </td>
+      <td>
+        <input type="checkbox" name="programmingLanguages" value="html"> HTML
+        <input type="checkbox" name="programmingLanguages" value="CSS"> CSS
+        <input type="checkbox" name="programmingLanguages" value="Type Script"> Type Script
+        <input type="checkbox" name="programmingLanguages" value="Angular 2"> Angular 2
+      </td>
+    </tr>
+  </table>
+  <button type="submit" class="btn btn-default">Add</button>
+</form>
+
+<div>
+      <label>Are you popular?</label>
+      <label class="custom-control custom-radio">
+        <input id="radio1" name="radio" type="radio" class="custom-control-input"> Yes
+        <!--<span class="custom-control-indicator"></span>
+          <span class="custom-control-description">Toggle this custom radio</span>
+      </label>
+      <label class="custom-control custom-radio">
+        <input id="radio2" name="radio" type="radio" class="custom-control-input"> No
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">Or toggle this other custom radio</span>
+      </label>
+    </div>
+    <div class="radio">
+      <input type="radio" name="popularity">Yes
+    </div>
+    <div class="radio">
+      <label class="col-sm-3 control-label"><input type="radio" name="popularity">No</label>
+    </div>
+
+-->
